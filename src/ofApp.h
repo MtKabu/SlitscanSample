@@ -10,26 +10,35 @@ class ofApp : public ofBaseApp{
 		void setup();
 		void update();
 		void draw();
-
-		void keyPressed(int key);
-		void keyReleased(int key);
-		void mouseMoved(int x, int y );
-		void mouseDragged(int x, int y, int button);
-		void mousePressed(int x, int y, int button);
-		void mouseReleased(int x, int y, int button);
-		void mouseEntered(int x, int y);
-		void mouseExited(int x, int y);
-		void windowResized(int w, int h);
-		void dragEvent(ofDragInfo dragInfo);
-		void gotMessage(ofMessage msg);
-
-        // ウェブカメラ
-        ofVideoGrabber grabber;
-        // 画像トリミング用に一旦FBOに保存
-        ofFbo fbo;
+    
         // 画面サイズ
         int CAPSIZE_W = 640;
         int CAPSIZE_H = 480;
+        // フレームレート
+        int FPS = 30;
     
-        ofxCvColorImage slit_img;
+        // ウェブカメラ
+        ofVideoGrabber grabber;
+        // 画像変換用に一旦FBOに保存
+        ofFbo fbo;
+        // スリット数
+        int NUM_SLIT = 120;
+        // 現在のフレーム
+        int nowslit = 0;
+        // スリットの幅
+        int slitwidth;
+        // 画像配列初期化用フラグ
+        bool isStart = false;
+        // カメラアップデートフラグ
+        bool isCamUpdate = false;
+    
+        // 画像一覧配列（1フレームずつの画像が入っている）
+        ofxCvColorImage* orignalimages = new ofxCvColorImage[NUM_SLIT];
+    
+    
+        // ムービー用
+        // 動画再生用インスタンス
+        ofVideoPlayer videoplayer;
+        // 動画フラグ
+        bool isVideo = true;
 };
